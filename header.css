@@ -3,9 +3,10 @@
 
 nav{
   font-family: "Poppins";
-  position: realtive;
+  position: relative;
   width: 100%;
   background: #242526;
+  z-index:5;
 }
 nav .wrapper{
   position: relative;
