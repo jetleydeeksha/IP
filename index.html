@@ -94,11 +94,6 @@ Not a member yet ?
 </div>
 </div>
 <script>
-  $(function() {
-    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    $("html, body").css({"width":w,"height":h});
-});
     const pass_field = document.querySelector('.pass-key');
     const showBtn = document.querySelector('.show');
     showBtn.addEventListener('click', function(){
@@ -176,6 +171,23 @@ Not a member yet ?
       <br><br>
       <p class="bottom-text">2017 &copy; Nextstep.Ltd. All rights reserved.</p>
   </div>
+  <script type="module">
+    navigator.virtualKeyboard.overlaysContent = true
+
+    navigator.virtualKeyboard.addEventListener("geometrychange", () => {
+        // Request the canvas be repainted so it can reposition
+        // the active cell above the virtual keyboard.
+        requestAnimationFrame(paintCanvas)
+    })
+
+    paintCanvas() {
+        let keyboardRect = navigator.virtualKeyboard.boundingRect
+
+        // Use keyboard rect in omitted code below to paint cells in the 
+        // proper position accounting for the keyboard rect along with
+        // any panning of the cell area that the user may have performed.
+    }
+</script>
 </body>
 </html>
 
