@@ -94,6 +94,11 @@ Not a member yet ?
 </div>
 </div>
 <script>
+  $(function() {
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    $("html, body").css({"width":w,"height":h});
+});
     const pass_field = document.querySelector('.pass-key');
     const showBtn = document.querySelector('.show');
     showBtn.addEventListener('click', function(){
