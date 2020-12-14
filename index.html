@@ -7,9 +7,41 @@
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="css/all.css">
-
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
-     
+     <style>
+  @media (spanning: single-fold-vertical) {
+    body {
+      display: grid;
+      margin: 0;
+      height: 100vh;
+      grid-template-columns: env(fold-left) calc(100vw - env(fold-right));
+      grid-column-gap: calc(env(fold-right) - env(fold-left));
+    }
+    .page {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .search-box {
+      /* overlay into same grid column as the map */
+      grid-column: 1;
+      grid-row: 1;
+
+      /* position the search box at the bottom of the cell, centered */
+      align-self: end;
+
+      /* margin when keyboard not showing on left screen */
+      margin: 20px;
+    }
+
+    @media (env(keyboard-inset-right) <= env(fold-left)) {
+      /* keyboard is on the left screen, adjust search box */
+      .search-box {
+        margin-bottom: calc(20px + env(keyboard-inset-height));
+      }
+    }
+  }
+</style>
+
   </head>
 <body>
   <header>
@@ -75,11 +107,11 @@
         <?php include('errors.php'); ?>
         <div class="field">
           <span class="fa fa-user"></span>
-          <input id="text" type="text" required placeholder="Username" name="Username">
+          <input class="search-box" id="text" type="text" required placeholder="Username" name="Username">
         </div>
 <div class="field space">
           <span class="fa fa-lock"></span>
-          <input id="text2" type="password" class="pass-key" required placeholder="Password" name="Password">
+          <input id="text2" type="password" class="pass-key search-box" required placeholder="Password" name="Password">
           <span class="show">SHOW</span>
         </div>
 <div class="field">
